@@ -3,35 +3,11 @@ import { useNavigate } from "react-router-dom";
 const Quiz = () => {
   const navigate = useNavigate();
   localStorage.clear();
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [correct, setCorrect] = useState(0);
-  // var correct = 0;
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
-  // const arr= new Array(6);
   const [arr, setArr] = useState(new Array(6).fill(null));
 
   const handleAnswer = (optionIndex, qindex) => {
-    // const correct;
-    // if (optionIndex === selectedOptionInde) {
-    //   // setCorrect(0);
-    //   return;
-    // }
-    // // console.log(optionIndex);
-    // setSelectedOptionIndex(optionIndex);
-    // const option = questions[currentQuestion].options[optionIndex];
-    // if (option === questions[currentQuestion].correctAnswer) {
-    //   // console.log("before",correct);
-    //   // setCorrect((prevCorrect) => prevCorrect + 1);
-    //   // console.log("after",correct);
-    //   setCorrect(correct + 1);
-    //   // correct+=1;
-    //   // console.log(correct);
-    //   // console.log(optionIndex);
-    // }
-    // console.log(correct);
-    // const newarr= new newarr[6];
-    //     newarr[qindex]=optionIndex;
-    // arr[qindex] = optionIndex;
     const newArr = [...arr];
     newArr[qindex] = optionIndex;
     setArr(newArr);
@@ -90,10 +66,7 @@ const Quiz = () => {
           {questions[currentQuestion].options.map((option, index) => (
             <p
               key={index}
-              className={
-                "w-72 " + "options"
-                // (selectedOptionIndex === index ? " selected" : "")
-              }
+              className={"w-72 " + "options"}
               onClick={() => handleAnswer(index, currentQuestion)}
             >
               {option}
