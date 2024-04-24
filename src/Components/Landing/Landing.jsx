@@ -6,6 +6,7 @@ const Landing = () => {
   const navbarHeight = 100;
   const navigate = useNavigate();
 
+
   return (
     <div
       className="min-w-screen flex justify-center items-center flex-col"
@@ -26,7 +27,7 @@ const Landing = () => {
         <div className="h-30 w-30 rounded-full bg-blue-100 flex justify-center items-center">
           <button
             className="h-20 w-20 bg-blue-100 rounded-full flex justify-center items-center"
-            onClick={() => navigate("/quiz")}
+            onClick={() => navigate("/login")}
           >
             <ArrowForwardIosIcon className="move-button" />
           </button>

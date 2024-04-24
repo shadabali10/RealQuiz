@@ -8,6 +8,7 @@ const slice = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.push(action.payload);
+   
     },
   },
 });

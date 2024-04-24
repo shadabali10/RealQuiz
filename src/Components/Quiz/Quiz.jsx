@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const Quiz = () => {
+  localStorage.setItem("check", "false");
+  console.log(check);
   const navigate = useNavigate();
   localStorage.clear();
 
@@ -12,7 +15,9 @@ const Quiz = () => {
     newArr[qindex] = optionIndex;
     setArr(newArr);
   };
+
   console.log(arr);
+
   const questions = [
     {
       question: "What is the capital of France?",
@@ -53,6 +58,8 @@ const Quiz = () => {
   const submitQuizHandler = (e) => {
     e.preventDefault();
     localStorage.setItem("quiz", JSON.stringify(arr));
+    localStorage.setItem("check", "true");
+   console.log(check);
     navigate("/result");
   };
 
@@ -73,17 +80,21 @@ const Quiz = () => {
             </p>
           ))}
         </div>
-        {currentQuestion < questions.length - 1 && (
-          <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
-            Next
-          </button>
-        )}
         {currentQuestion > 0 && (
           <button onClick={() => setCurrentQuestion(currentQuestion - 1)}>
             Prev
           </button>
         )}
-        <button onClick={submitQuizHandler}>Submit Quiz</button>
+        {currentQuestion < questions.length - 1 &&
+          arr[currentQuestion] !== null && (
+            <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
+              Next
+            </button>
+          )}
+        {currentQuestion === questions.length - 1 &&
+          arr[currentQuestion] !== null && (
+            <button onClick={submitQuizHandler}>Submit Quiz</button>
+          )}
       </div>
     </div>
   );

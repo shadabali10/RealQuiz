@@ -1,23 +1,29 @@
 import React, { useState } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
-
 import { addTask } from "./TaskReducer";
-import loginData from "./TaskReducer"; 
+import { useNavigate } from "react-router-dom";
 
+// Define data outside the component
+let data = {};
 
 const Login = () => {
-    const tasks = useSelector((state) => state.tasks);
-const dispatch = useDispatch();
+   const tasks = useSelector((state) => state.tasks);
+   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();  
-     dispatch(addTask({ email,password }))
+    e.preventDefault();
+    dispatch(addTask({ email, password }));
 
-    //  console.log(loginData);
-   
+    
+    data = { email, password };
+
+    console.log(data);
+    navigate("/quiz");
+
     setEmail("");
     setPassword("");
   };
@@ -49,4 +55,8 @@ const dispatch = useDispatch();
   );
 };
 
+
 export default Login;
+
+
+export { data };
