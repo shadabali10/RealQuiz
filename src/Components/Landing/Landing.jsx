@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Landing = () => {
   const navbarHeight = 100;
   const navigate = useNavigate();
-
+  localStorage.clear();
 
   return (
     <div

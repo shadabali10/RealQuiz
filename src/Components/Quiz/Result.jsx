@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Result = () => {
+  const navigate = useNavigate();
   let score = 0;
+  useEffect(()=>{
+    const check=localStorage.getItem('check');
+    if(check && !check){
+         navigate("/login");
+    }
+  })
   const arr = JSON.parse(localStorage.getItem("quiz"));
   const questions = [
     {

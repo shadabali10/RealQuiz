@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
-  localStorage.setItem("check", "false");
-  console.log(check);
+  const check = localStorage.setItem("check", "false");
+  const navbarHeight = 100;
+  
   const navigate = useNavigate();
   localStorage.clear();
 
@@ -58,13 +59,16 @@ const Quiz = () => {
   const submitQuizHandler = (e) => {
     e.preventDefault();
     localStorage.setItem("quiz", JSON.stringify(arr));
-    localStorage.setItem("check", "true");
-   console.log(check);
+    localStorage.setItem("check", true);
+    console.log(check);
     navigate("/result");
   };
 
   return (
-    <div className="min-h-screen min-w-screen flex justify-center items-center">
+    <div
+      className="min-w-screen flex justify-center items-center"
+      style={{ height: `calc(100vh - ${navbarHeight}px)` }}
+    >
       <div className="w-1/2 h-1/2">
         <div>
           <h1>{questions[currentQuestion].question}</h1>
@@ -91,10 +95,9 @@ const Quiz = () => {
               Next
             </button>
           )}
-        {currentQuestion === questions.length - 1 &&
-          arr[currentQuestion] !== null && (
-            <button onClick={submitQuizHandler}>Submit Quiz</button>
-          )}
+        {arr[currentQuestion] !== null && (
+          <button onClick={submitQuizHandler}>Submit Quiz</button>
+        )}
       </div>
     </div>
   );
