@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 const Result = () => {
   const navigate = useNavigate();
   let score = 0;
-  useEffect(()=>{
-    const check=localStorage.getItem('check');
-    if(check && !check){
-         navigate("/login");
+  useEffect(() => {
+    const check = localStorage.getItem("check");
+    if (check && !check) {
+      navigate("/login");
     }
-  })
+  });
   const arr = JSON.parse(localStorage.getItem("quiz"));
   const questions = [
     {
@@ -51,7 +51,7 @@ const Result = () => {
   if (arr) {
     for (let i = 0; i < arr.length; i++) {
       const optionIndex = arr[i];
-    
+
       if (optionIndex === null) {
         continue;
       }
@@ -59,18 +59,28 @@ const Result = () => {
         optionIndex !== null &&
         optionIndex === questions[i].options.indexOf(questions[i].correctAnswer)
       ) {
-       
         console.log("correct");
         score = score + 4;
       }
     }
   }
 
- 
   console.log(arr);
   console.log(score);
-  return <div>{score}</div>;
+
+  return (
+    <div>
+      <div className="flex justify-center items-center min-w-screen min-h-screen">
+        <div className="w-96 h-96 flex justify-center items-center flex-col bg-gray-100 rounded-lg">
+          <h1 className="mb-4 text-2xl font-bold text-green-600">Congratulations</h1>
+          <h1 className="mb-8 text-4xl font-bold">Your score is {score}</h1>
+          <button className="w-32 h-10 bg-red-500 rounded-lg text-white " onClick={() => navigate("/")}>
+            Restart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 //  export {score};
 export default Result;
-

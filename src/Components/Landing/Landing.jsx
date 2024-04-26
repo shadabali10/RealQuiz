@@ -12,11 +12,7 @@ const Landing = () => {
       className="min-w-screen flex justify-center items-center flex-col"
       style={{ height: `calc(100vh - ${navbarHeight}px)` }}
     >
-      <div
-        data-aos="fade-up"
-        data-aos-anchor-placement="center-center"
-        className="w-1/2"
-      >
+      <div className="w-1/2 max-md:w-full">
         <h1>Welcome to really awesome Aureal quiz experience</h1>
         <p>
           Just answer the few questions and we'll provide you with not one, but

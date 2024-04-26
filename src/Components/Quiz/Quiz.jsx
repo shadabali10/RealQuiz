@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 const Quiz = () => {
   const check = localStorage.setItem("check", "false");
   const navbarHeight = 100;
-  
+
   const navigate = useNavigate();
   localStorage.clear();
 
@@ -69,7 +71,7 @@ const Quiz = () => {
       className="min-w-screen flex justify-center items-center"
       style={{ height: `calc(100vh - ${navbarHeight}px)` }}
     >
-      <div className="w-1/2 h-1/2">
+      <div className="w-1/2 h-1/2 max-md:w-full">
         <div>
           <h1>{questions[currentQuestion].question}</h1>
         </div>
@@ -77,27 +79,45 @@ const Quiz = () => {
           {questions[currentQuestion].options.map((option, index) => (
             <p
               key={index}
-              className={"w-72 " + "options"}
+              className={
+                "w-72 options border border-black rounded-xl m-3 cursor-pointer p-2 hover:bg-[rgb(147,197,253)]"
+              }
               onClick={() => handleAnswer(index, currentQuestion)}
             >
               {option}
             </p>
           ))}
         </div>
-        {currentQuestion > 0 && (
-          <button onClick={() => setCurrentQuestion(currentQuestion - 1)}>
-            Prev
-          </button>
-        )}
-        {currentQuestion < questions.length - 1 &&
-          arr[currentQuestion] !== null && (
-            <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
-              Next
-            </button>
+        <div className="flex justify-between items-center w-full mb-10 mt-10">
+          {currentQuestion > 0 && (
+            <Stack direction="row" spacing={2} className="ml-20 max-md:ml-5">
+              <Button
+                variant="outlined"
+                onClick={() => setCurrentQuestion(currentQuestion - 1)}
+              >
+                Prev
+              </Button>
+            </Stack>
           )}
-        {arr[currentQuestion] !== null && (
-          <button onClick={submitQuizHandler}>Submit Quiz</button>
-        )}
+          {arr[currentQuestion] !== null && (
+            <Stack direction="row" spacing={2}>
+              <Button variant="contained" onClick={submitQuizHandler}>
+                Submit Quiz
+              </Button>
+            </Stack>
+          )}
+          {currentQuestion < questions.length - 1 &&
+            arr[currentQuestion] !== null && (
+              <Stack direction="row" spacing={2} className="mr-20 max-md:mr-5">
+                <Button
+                  variant="outlined"
+                  onClick={() => setCurrentQuestion(currentQuestion + 1)}
+                >
+                  Next
+                </Button>
+              </Stack>
+            )}
+        </div>
       </div>
     </div>
   );

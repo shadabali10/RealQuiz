@@ -37,12 +37,8 @@ const Login = () => {
       className="min-w-screen flex justify-center items-center flex-row flex-wrap"
       style={{ height: `calc(100vh - ${navbarHeight}px)` }}
     >
-      <div className="flex justify-space-between items-center h-full w-1/2">
-        <img
-          src={loginImage}
-          style={{ width: "500px", height: "500px" }}
-          className=" max-md:hidden"
-        ></img>
+      <div className="flex justify-space-between items-center h-full w-1/2  max-md:hidden">
+        <img src={loginImage} style={{ width: "500px", height: "500px" }}></img>
       </div>
       <div className="flex justify-center items-center">
         <form
@@ -84,7 +80,7 @@ const Login = () => {
           </div>
           <box />
           <Stack direction="row" spacing={2}>
-            <Button variant="contained" color="success">
+            <Button variant="contained" color="success" onClick={handleSubmit}>
               Submit
             </Button>
           </Stack>
